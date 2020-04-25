@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.WebUserMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.WebUser" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_user_account" property="fUserAccount" jdbcType="VARCHAR" />
+    <result column="f_user_password" property="fUserPassword" jdbcType="VARCHAR" />
+    <result column="f_user_pay_password" property="fUserPayPassword" jdbcType="VARCHAR" />
+    <result column="f_user_class" property="fUserClass" jdbcType="VARCHAR" />
+    <result column="f_user_relname" property="fUserRelname" jdbcType="VARCHAR" />
+    <result column="f_user_nick" property="fUserNick" jdbcType="VARCHAR" />
+    <result column="f_user_head" property="fUserHead" jdbcType="VARCHAR" />
+    <result column="f_user_sex" property="fUserSex" jdbcType="INTEGER" />
+    <result column="f_user_age" property="fUserAge" jdbcType="INTEGER" />
+    <result column="f_user_birthday" property="fUserBirthday" jdbcType="DATE" />
+    <result column="f_user_email" property="fUserEmail" jdbcType="VARCHAR" />
+    <result column="f_user_email_status" property="fUserEmailStatus" jdbcType="INTEGER" />
+    <result column="f_user_phone" property="fUserPhone" jdbcType="VARCHAR" />
+    <result column="f_user_phone_status" property="fUserPhoneStatus" jdbcType="INTEGER" />
+    <result column="f_user_idcard_type" property="fUserIdcardType" jdbcType="INTEGER" />
+    <result column="f_user_idcard" property="fUserIdcard" jdbcType="VARCHAR" />
+    <result column="f_user_idcard_status" property="fUserIdcardStatus" jdbcType="INTEGER" />
+    <result column="f_user_marriage" property="fUserMarriage" jdbcType="INTEGER" />
+    <result column="f_user_education" property="fUserEducation" jdbcType="INTEGER" />
+    <result column="f_user_industries" property="fUserIndustries" jdbcType="INTEGER" />
+    <result column="f_level_id" property="fLevelId" jdbcType="BIGINT" />
+    <result column="f_user_open_sourcetype" property="fUserOpenSourcetype" jdbcType="INTEGER" />
+    <result column="f_user_openid" property="fUserOpenid" jdbcType="VARCHAR" />
+    <result column="f_user_city_id" property="fUserCityId" jdbcType="INTEGER" />
+    <result column="f_user_district_id" property="fUserDistrictId" jdbcType="INTEGER" />
+    <result column="f_user_provice_id" property="fUserProviceId" jdbcType="INTEGER" />
+    <result column="f_user_street_id" property="fUserStreetId" jdbcType="INTEGER" />
+    <result column="f_user_district" property="fUserDistrict" jdbcType="VARCHAR" />
+    <result column="f_user_city" property="fUserCity" jdbcType="VARCHAR" />
+    <result column="f_user_provice" property="fUserProvice" jdbcType="VARCHAR" />
+    <result column="f_user_street" property="fUserStreet" jdbcType="VARCHAR" />
+    <result column="f_user_address" property="fUserAddress" jdbcType="VARCHAR" />
+    <result column="f_user_postcode" property="fUserPostcode" jdbcType="VARCHAR" />
+    <result column="f_user_type" property="fUserType" jdbcType="INTEGER" />
+    <result column="f_user_status" property="fUserStatus" jdbcType="INTEGER" />
+    <result column="f_user_status_remark" property="fUserStatusRemark" jdbcType="VARCHAR" />
+    <result column="f_create_time" property="fCreateTime" jdbcType="TIMESTAMP" />
+    <result column="f_create_userId" property="fCreateUserid" jdbcType="BIGINT" />
+    <result column="f_update_userId" property="fUpdateUserid" jdbcType="BIGINT" />
+    <result column="f_update_time" property="fUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="f_last_login" property="fLastLogin" jdbcType="TIMESTAMP" />
+    <result column="f_is_revice" property="fIsRevice" jdbcType="INTEGER" />
+    <result column="f_resource" property="fResource" jdbcType="VARCHAR" />
+    <result column="f_user_idcard_frontImage" property="fUserIdcardFrontimage" jdbcType="VARCHAR" />
+    <result column="f_user_idcard_backImage" property="fUserIdcardBackimage" jdbcType="VARCHAR" />
+    <result column="f_handler_status" property="fHandlerStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f_id, f_user_account, f_user_password, f_user_pay_password, f_user_class, f_user_relname,
+    f_user_nick, f_user_head, f_user_sex, f_user_age, f_user_birthday, f_user_email,
+    f_user_email_status, f_user_phone, f_user_phone_status, f_user_idcard_type, f_user_idcard,
+    f_user_idcard_status, f_user_marriage, f_user_education, f_user_industries, f_level_id,
+    f_user_open_sourcetype, f_user_openid, f_user_city_id, f_user_district_id, f_user_provice_id,
+    f_user_street_id, f_user_district, f_user_city, f_user_provice, f_user_street, f_user_address,
+    f_user_postcode, f_user_type, f_user_status, f_user_status_remark, f_create_time,
+    f_create_userId, f_update_userId, f_update_time, f_last_login, f_is_revice, f_resource,
+    f_user_idcard_frontImage, f_user_idcard_backImage, f_handler_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zm_web_user
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zm_web_user
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.entity.WebUser" >
+    insert into zm_web_user (f_id, f_user_account, f_user_password, 
+      f_user_pay_password, f_user_class, f_user_relname, 
+      f_user_nick, f_user_head, f_user_sex, 
+      f_user_age, f_user_birthday, f_user_email, 
+      f_user_email_status, f_user_phone, f_user_phone_status, 
+      f_user_idcard_type, f_user_idcard, f_user_idcard_status, 
+      f_user_marriage, f_user_education, f_user_industries, 
+      f_level_id, f_user_open_sourcetype, f_user_openid, 
+      f_user_city_id, f_user_district_id, f_user_provice_id, 
+      f_user_street_id, f_user_district, f_user_city, 
+      f_user_provice, f_user_street, f_user_address, 
+      f_user_postcode, f_user_type, f_user_status, 
+      f_user_status_remark, f_create_time, f_create_userId, 
+      f_update_userId, f_update_time, f_last_login, 
+      f_is_revice, f_resource, f_user_idcard_frontImage, 
+      f_user_idcard_backImage, f_handler_status)
+    values (#{fId,jdbcType=BIGINT}, #{fUserAccount,jdbcType=VARCHAR}, #{fUserPassword,jdbcType=VARCHAR}, 
+      #{fUserPayPassword,jdbcType=VARCHAR}, #{fUserClass,jdbcType=VARCHAR}, #{fUserRelname,jdbcType=VARCHAR}, 
+      #{fUserNick,jdbcType=VARCHAR}, #{fUserHead,jdbcType=VARCHAR}, #{fUserSex,jdbcType=INTEGER}, 
+      #{fUserAge,jdbcType=INTEGER}, #{fUserBirthday,jdbcType=DATE}, #{fUserEmail,jdbcType=VARCHAR}, 
+      #{fUserEmailStatus,jdbcType=INTEGER}, #{fUserPhone,jdbcType=VARCHAR}, #{fUserPhoneStatus,jdbcType=INTEGER}, 
+      #{fUserIdcardType,jdbcType=INTEGER}, #{fUserIdcard,jdbcType=VARCHAR}, #{fUserIdcardStatus,jdbcType=INTEGER}, 
+      #{fUserMarriage,jdbcType=INTEGER}, #{fUserEducation,jdbcType=INTEGER}, #{fUserIndustries,jdbcType=INTEGER}, 
+      #{fLevelId,jdbcType=BIGINT}, #{fUserOpenSourcetype,jdbcType=INTEGER}, #{fUserOpenid,jdbcType=VARCHAR}, 
+      #{fUserCityId,jdbcType=INTEGER}, #{fUserDistrictId,jdbcType=INTEGER}, #{fUserProviceId,jdbcType=INTEGER}, 
+      #{fUserStreetId,jdbcType=INTEGER}, #{fUserDistrict,jdbcType=VARCHAR}, #{fUserCity,jdbcType=VARCHAR}, 
+      #{fUserProvice,jdbcType=VARCHAR}, #{fUserStreet,jdbcType=VARCHAR}, #{fUserAddress,jdbcType=VARCHAR}, 
+      #{fUserPostcode,jdbcType=VARCHAR}, #{fUserType,jdbcType=INTEGER}, #{fUserStatus,jdbcType=INTEGER}, 
+      #{fUserStatusRemark,jdbcType=VARCHAR}, #{fCreateTime,jdbcType=TIMESTAMP}, #{fCreateUserid,jdbcType=BIGINT}, 
+      #{fUpdateUserid,jdbcType=BIGINT}, #{fUpdateTime,jdbcType=TIMESTAMP}, #{fLastLogin,jdbcType=TIMESTAMP}, 
+      #{fIsRevice,jdbcType=INTEGER}, #{fResource,jdbcType=VARCHAR}, #{fUserIdcardFrontimage,jdbcType=VARCHAR}, 
+      #{fUserIdcardBackimage,jdbcType=VARCHAR}, #{fHandlerStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.WebUser" >
+    insert into zm_web_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fUserAccount != null" >
+        f_user_account,
+      </if>
+      <if test="fUserPassword != null" >
+        f_user_password,
+      </if>
+      <if test="fUserPayPassword != null" >
+        f_user_pay_password,
+      </if>
+      <if test="fUserClass != null" >
+        f_user_class,
+      </if>
+      <if test="fUserRelname != null" >
+        f_user_relname,
+      </if>
+      <if test="fUserNick != null" >
+        f_user_nick,
+      </if>
+      <if test="fUserHead != null" >
+        f_user_head,
+      </if>
+      <if test="fUserSex != null" >
+        f_user_sex,
+      </if>
+      <if test="fUserAge != null" >
+        f_user_age,
+      </if>
+      <if test="fUserBirthday != null" >
+        f_user_birthday,
+      </if>
+      <if test="fUserEmail != null" >
+        f_user_email,
+      </if>
+      <if test="fUserEmailStatus != null" >
+        f_user_email_status,
+      </if>
+      <if test="fUserPhone != null" >
+        f_user_phone,
+      </if>
+      <if test="fUserPhoneStatus != null" >
+        f_user_phone_status,
+      </if>
+      <if test="fUserIdcardType != null" >
+        f_user_idcard_type,
+      </if>
+      <if test="fUserIdcard != null" >
+        f_user_idcard,
+      </if>
+      <if test="fUserIdcardStatus != null" >
+        f_user_idcard_status,
+      </if>
+      <if test="fUserMarriage != null" >
+        f_user_marriage,
+      </if>
+      <if test="fUserEducation != null" >
+        f_user_education,
+      </if>
+      <if test="fUserIndustries != null" >
+        f_user_industries,
+      </if>
+      <if test="fLevelId != null" >
+        f_level_id,
+      </if>
+      <if test="fUserOpenSourcetype != null" >
+        f_user_open_sourcetype,
+      </if>
+      <if test="fUserOpenid != null" >
+        f_user_openid,
+      </if>
+      <if test="fUserCityId != null" >
+        f_user_city_id,
+      </if>
+      <if test="fUserDistrictId != null" >
+        f_user_district_id,
+      </if>
+      <if test="fUserProviceId != null" >
+        f_user_provice_id,
+      </if>
+      <if test="fUserStreetId != null" >
+        f_user_street_id,
+      </if>
+      <if test="fUserDistrict != null" >
+        f_user_district,
+      </if>
+      <if test="fUserCity != null" >
+        f_user_city,
+      </if>
+      <if test="fUserProvice != null" >
+        f_user_provice,
+      </if>
+      <if test="fUserStreet != null" >
+        f_user_street,
+      </if>
+      <if test="fUserAddress != null" >
+        f_user_address,
+      </if>
+      <if test="fUserPostcode != null" >
+        f_user_postcode,
+      </if>
+      <if test="fUserType != null" >
+        f_user_type,
+      </if>
+      <if test="fUserStatus != null" >
+        f_user_status,
+      </if>
+      <if test="fUserStatusRemark != null" >
+        f_user_status_remark,
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time,
+      </if>
+      <if test="fCreateUserid != null" >
+        f_create_userId,
+      </if>
+      <if test="fUpdateUserid != null" >
+        f_update_userId,
+      </if>
+      <if test="fUpdateTime != null" >
+        f_update_time,
+      </if>
+      <if test="fLastLogin != null" >
+        f_last_login,
+      </if>
+      <if test="fIsRevice != null" >
+        f_is_revice,
+      </if>
+      <if test="fResource != null" >
+        f_resource,
+      </if>
+      <if test="fUserIdcardFrontimage != null" >
+        f_user_idcard_frontImage,
+      </if>
+      <if test="fUserIdcardBackimage != null" >
+        f_user_idcard_backImage,
+      </if>
+      <if test="fHandlerStatus != null" >
+        f_handler_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserAccount != null" >
+        #{fUserAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPassword != null" >
+        #{fUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPayPassword != null" >
+        #{fUserPayPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserClass != null" >
+        #{fUserClass,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserRelname != null" >
+        #{fUserRelname,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserNick != null" >
+        #{fUserNick,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserHead != null" >
+        #{fUserHead,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserSex != null" >
+        #{fUserSex,jdbcType=INTEGER},
+      </if>
+      <if test="fUserAge != null" >
+        #{fUserAge,jdbcType=INTEGER},
+      </if>
+      <if test="fUserBirthday != null" >
+        #{fUserBirthday,jdbcType=DATE},
+      </if>
+      <if test="fUserEmail != null" >
+        #{fUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserEmailStatus != null" >
+        #{fUserEmailStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserPhone != null" >
+        #{fUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPhoneStatus != null" >
+        #{fUserPhoneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIdcardType != null" >
+        #{fUserIdcardType,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIdcard != null" >
+        #{fUserIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardStatus != null" >
+        #{fUserIdcardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserMarriage != null" >
+        #{fUserMarriage,jdbcType=INTEGER},
+      </if>
+      <if test="fUserEducation != null" >
+        #{fUserEducation,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIndustries != null" >
+        #{fUserIndustries,jdbcType=INTEGER},
+      </if>
+      <if test="fLevelId != null" >
+        #{fLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserOpenSourcetype != null" >
+        #{fUserOpenSourcetype,jdbcType=INTEGER},
+      </if>
+      <if test="fUserOpenid != null" >
+        #{fUserOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserCityId != null" >
+        #{fUserCityId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserDistrictId != null" >
+        #{fUserDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserProviceId != null" >
+        #{fUserProviceId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStreetId != null" >
+        #{fUserStreetId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserDistrict != null" >
+        #{fUserDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserCity != null" >
+        #{fUserCity,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserProvice != null" >
+        #{fUserProvice,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserStreet != null" >
+        #{fUserStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserAddress != null" >
+        #{fUserAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPostcode != null" >
+        #{fUserPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserType != null" >
+        #{fUserType,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStatus != null" >
+        #{fUserStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStatusRemark != null" >
+        #{fUserStatusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null" >
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateUserid != null" >
+        #{fCreateUserid,jdbcType=BIGINT},
+      </if>
+      <if test="fUpdateUserid != null" >
+        #{fUpdateUserid,jdbcType=BIGINT},
+      </if>
+      <if test="fUpdateTime != null" >
+        #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fLastLogin != null" >
+        #{fLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fIsRevice != null" >
+        #{fIsRevice,jdbcType=INTEGER},
+      </if>
+      <if test="fResource != null" >
+        #{fResource,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardFrontimage != null" >
+        #{fUserIdcardFrontimage,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardBackimage != null" >
+        #{fUserIdcardBackimage,jdbcType=VARCHAR},
+      </if>
+      <if test="fHandlerStatus != null" >
+        #{fHandlerStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.WebUser" >
+    update zm_web_user
+    <set >
+      <if test="fUserAccount != null" >
+        f_user_account = #{fUserAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPassword != null" >
+        f_user_password = #{fUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPayPassword != null" >
+        f_user_pay_password = #{fUserPayPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserClass != null" >
+        f_user_class = #{fUserClass,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserRelname != null" >
+        f_user_relname = #{fUserRelname,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserNick != null" >
+        f_user_nick = #{fUserNick,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserHead != null" >
+        f_user_head = #{fUserHead,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserSex != null" >
+        f_user_sex = #{fUserSex,jdbcType=INTEGER},
+      </if>
+      <if test="fUserAge != null" >
+        f_user_age = #{fUserAge,jdbcType=INTEGER},
+      </if>
+      <if test="fUserBirthday != null" >
+        f_user_birthday = #{fUserBirthday,jdbcType=DATE},
+      </if>
+      <if test="fUserEmail != null" >
+        f_user_email = #{fUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserEmailStatus != null" >
+        f_user_email_status = #{fUserEmailStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserPhone != null" >
+        f_user_phone = #{fUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPhoneStatus != null" >
+        f_user_phone_status = #{fUserPhoneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIdcardType != null" >
+        f_user_idcard_type = #{fUserIdcardType,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIdcard != null" >
+        f_user_idcard = #{fUserIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardStatus != null" >
+        f_user_idcard_status = #{fUserIdcardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserMarriage != null" >
+        f_user_marriage = #{fUserMarriage,jdbcType=INTEGER},
+      </if>
+      <if test="fUserEducation != null" >
+        f_user_education = #{fUserEducation,jdbcType=INTEGER},
+      </if>
+      <if test="fUserIndustries != null" >
+        f_user_industries = #{fUserIndustries,jdbcType=INTEGER},
+      </if>
+      <if test="fLevelId != null" >
+        f_level_id = #{fLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="fUserOpenSourcetype != null" >
+        f_user_open_sourcetype = #{fUserOpenSourcetype,jdbcType=INTEGER},
+      </if>
+      <if test="fUserOpenid != null" >
+        f_user_openid = #{fUserOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserCityId != null" >
+        f_user_city_id = #{fUserCityId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserDistrictId != null" >
+        f_user_district_id = #{fUserDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserProviceId != null" >
+        f_user_provice_id = #{fUserProviceId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStreetId != null" >
+        f_user_street_id = #{fUserStreetId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserDistrict != null" >
+        f_user_district = #{fUserDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserCity != null" >
+        f_user_city = #{fUserCity,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserProvice != null" >
+        f_user_provice = #{fUserProvice,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserStreet != null" >
+        f_user_street = #{fUserStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserAddress != null" >
+        f_user_address = #{fUserAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserPostcode != null" >
+        f_user_postcode = #{fUserPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserType != null" >
+        f_user_type = #{fUserType,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStatus != null" >
+        f_user_status = #{fUserStatus,jdbcType=INTEGER},
+      </if>
+      <if test="fUserStatusRemark != null" >
+        f_user_status_remark = #{fUserStatusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null" >
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fCreateUserid != null" >
+        f_create_userId = #{fCreateUserid,jdbcType=BIGINT},
+      </if>
+      <if test="fUpdateUserid != null" >
+        f_update_userId = #{fUpdateUserid,jdbcType=BIGINT},
+      </if>
+      <if test="fUpdateTime != null" >
+        f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fLastLogin != null" >
+        f_last_login = #{fLastLogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fIsRevice != null" >
+        f_is_revice = #{fIsRevice,jdbcType=INTEGER},
+      </if>
+      <if test="fResource != null" >
+        f_resource = #{fResource,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardFrontimage != null" >
+        f_user_idcard_frontImage = #{fUserIdcardFrontimage,jdbcType=VARCHAR},
+      </if>
+      <if test="fUserIdcardBackimage != null" >
+        f_user_idcard_backImage = #{fUserIdcardBackimage,jdbcType=VARCHAR},
+      </if>
+      <if test="fHandlerStatus != null" >
+        f_handler_status = #{fHandlerStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <select id="selectUserLists" parameterType="com.entity.WebUser"  resultMap="BaseResultMap">
+      select
+      *
+      from zm_web_user
+      where 1=1
+      <trim suffixOverrides="and">
+        <if test="fId != null">
+          f_id=#{fId} and
+        </if>
+        <if test="fUserAccount != null" >
+          f_user_account = #{fUserAccount,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserPassword != null" >
+          f_user_password = #{fUserPassword,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserPayPassword != null" >
+          f_user_pay_password = #{fUserPayPassword,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserClass != null" >
+          f_user_class = #{fUserClass,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserRelname != null" >
+          f_user_relname = #{fUserRelname,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserNick != null" >
+          f_user_nick = #{fUserNick,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserHead != null" >
+          f_user_head = #{fUserHead,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserSex != null" >
+          f_user_sex = #{fUserSex,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserAge != null" >
+          f_user_age = #{fUserAge,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserBirthday != null" >
+          f_user_birthday = #{fUserBirthday,jdbcType=DATE} and
+        </if>
+        <if test="fUserEmail != null" >
+          f_user_email = #{fUserEmail,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserEmailStatus != null" >
+          f_user_email_status = #{fUserEmailStatus,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserPhone != null" >
+          f_user_phone = #{fUserPhone,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserPhoneStatus != null" >
+          f_user_phone_status = #{fUserPhoneStatus,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserIdcardType != null" >
+          f_user_idcard_type = #{fUserIdcardType,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserIdcard != null" >
+          f_user_idcard = #{fUserIdcard,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserIdcardStatus != null" >
+          f_user_idcard_status = #{fUserIdcardStatus,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserMarriage != null" >
+          f_user_marriage = #{fUserMarriage,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserEducation != null" >
+          f_user_education = #{fUserEducation,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserIndustries != null" >
+          f_user_industries = #{fUserIndustries,jdbcType=INTEGER} and
+        </if>
+        <if test="fLevelId != null" >
+          f_level_id = #{fLevelId,jdbcType=BIGINT} and
+        </if>
+        <if test="fUserOpenSourcetype != null" >
+          f_user_open_sourcetype = #{fUserOpenSourcetype,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserOpenid != null" >
+          f_user_openid = #{fUserOpenid,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserCityId != null" >
+          f_user_city_id = #{fUserCityId,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserDistrictId != null" >
+          f_user_district_id = #{fUserDistrictId,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserProviceId != null" >
+          f_user_provice_id = #{fUserProviceId,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserStreetId != null" >
+          f_user_street_id = #{fUserStreetId,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserDistrict != null" >
+          f_user_district = #{fUserDistrict,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserCity != null" >
+          f_user_city = #{fUserCity,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserProvice != null" >
+          f_user_provice = #{fUserProvice,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserStreet != null" >
+          f_user_street = #{fUserStreet,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserAddress != null" >
+          f_user_address = #{fUserAddress,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserPostcode != null" >
+          f_user_postcode = #{fUserPostcode,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserType != null" >
+          f_user_type = #{fUserType,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserStatus != null" >
+          f_user_status = #{fUserStatus,jdbcType=INTEGER} and
+        </if>
+        <if test="fUserStatusRemark != null" >
+          f_user_status_remark = #{fUserStatusRemark,jdbcType=VARCHAR} and
+        </if>
+        <if test="fCreateTime != null" >
+          f_create_time = #{fCreateTime,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="fCreateUserid != null" >
+          f_create_userId = #{fCreateUserid,jdbcType=BIGINT} and
+        </if>
+        <if test="fUpdateUserid != null" >
+          f_update_userId = #{fUpdateUserid,jdbcType=BIGINT} and
+        </if>
+        <if test="fUpdateTime != null" >
+          f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="fLastLogin != null" >
+          f_last_login = #{fLastLogin,jdbcType=TIMESTAMP} and
+        </if>
+        <if test="fIsRevice != null" >
+          f_is_revice = #{fIsRevice,jdbcType=INTEGER} and
+        </if>
+        <if test="fResource != null" >
+          f_resource = #{fResource,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserIdcardFrontimage != null" >
+          f_user_idcard_frontImage = #{fUserIdcardFrontimage,jdbcType=VARCHAR} and
+        </if>
+        <if test="fUserIdcardBackimage != null" >
+          f_user_idcard_backImage = #{fUserIdcardBackimage,jdbcType=VARCHAR} and
+        </if>
+        <if test="fHandlerStatus != null" >
+          f_handler_status = #{fHandlerStatus,jdbcType=INTEGER} and
+        </if>
+      </trim>
+  </select>
+  <select id="selectUserList" parameterType="com.util.PageBean"  resultMap="BaseResultMap">
+    select
+    *
+    from zm_web_user
+    limit #{startPage},#{pageSize}
+
+  </select>
+  <select id="selectUserListCount" parameterType="com.util.PageBean" resultType="java.lang.Integer">
+    select
+    count(*)
+    from zm_web_user
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.entity.WebUser" >
+    update zm_web_user
+    set f_user_account = #{fUserAccount,jdbcType=VARCHAR},
+      f_user_password = #{fUserPassword,jdbcType=VARCHAR},
+      f_user_pay_password = #{fUserPayPassword,jdbcType=VARCHAR},
+      f_user_class = #{fUserClass,jdbcType=VARCHAR},
+      f_user_relname = #{fUserRelname,jdbcType=VARCHAR},
+      f_user_nick = #{fUserNick,jdbcType=VARCHAR},
+      f_user_head = #{fUserHead,jdbcType=VARCHAR},
+      f_user_sex = #{fUserSex,jdbcType=INTEGER},
+      f_user_age = #{fUserAge,jdbcType=INTEGER},
+      f_user_birthday = #{fUserBirthday,jdbcType=DATE},
+      f_user_email = #{fUserEmail,jdbcType=VARCHAR},
+      f_user_email_status = #{fUserEmailStatus,jdbcType=INTEGER},
+      f_user_phone = #{fUserPhone,jdbcType=VARCHAR},
+      f_user_phone_status = #{fUserPhoneStatus,jdbcType=INTEGER},
+      f_user_idcard_type = #{fUserIdcardType,jdbcType=INTEGER},
+      f_user_idcard = #{fUserIdcard,jdbcType=VARCHAR},
+      f_user_idcard_status = #{fUserIdcardStatus,jdbcType=INTEGER},
+      f_user_marriage = #{fUserMarriage,jdbcType=INTEGER},
+      f_user_education = #{fUserEducation,jdbcType=INTEGER},
+      f_user_industries = #{fUserIndustries,jdbcType=INTEGER},
+      f_level_id = #{fLevelId,jdbcType=BIGINT},
+      f_user_open_sourcetype = #{fUserOpenSourcetype,jdbcType=INTEGER},
+      f_user_openid = #{fUserOpenid,jdbcType=VARCHAR},
+      f_user_city_id = #{fUserCityId,jdbcType=INTEGER},
+      f_user_district_id = #{fUserDistrictId,jdbcType=INTEGER},
+      f_user_provice_id = #{fUserProviceId,jdbcType=INTEGER},
+      f_user_street_id = #{fUserStreetId,jdbcType=INTEGER},
+      f_user_district = #{fUserDistrict,jdbcType=VARCHAR},
+      f_user_city = #{fUserCity,jdbcType=VARCHAR},
+      f_user_provice = #{fUserProvice,jdbcType=VARCHAR},
+      f_user_street = #{fUserStreet,jdbcType=VARCHAR},
+      f_user_address = #{fUserAddress,jdbcType=VARCHAR},
+      f_user_postcode = #{fUserPostcode,jdbcType=VARCHAR},
+      f_user_type = #{fUserType,jdbcType=INTEGER},
+      f_user_status = #{fUserStatus,jdbcType=INTEGER},
+      f_user_status_remark = #{fUserStatusRemark,jdbcType=VARCHAR},
+      f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      f_create_userId = #{fCreateUserid,jdbcType=BIGINT},
+      f_update_userId = #{fUpdateUserid,jdbcType=BIGINT},
+      f_update_time = #{fUpdateTime,jdbcType=TIMESTAMP},
+      f_last_login = #{fLastLogin,jdbcType=TIMESTAMP},
+      f_is_revice = #{fIsRevice,jdbcType=INTEGER},
+      f_resource = #{fResource,jdbcType=VARCHAR},
+      f_user_idcard_frontImage = #{fUserIdcardFrontimage,jdbcType=VARCHAR},
+      f_user_idcard_backImage = #{fUserIdcardBackimage,jdbcType=VARCHAR},
+      f_handler_status = #{fHandlerStatus,jdbcType=INTEGER}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertForeach" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into zm_web_user
+    ( f_user_account,f_user_phone,f_user_email)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.fUserAccount},
+      #{item.fUserPhone},
+      #{item.fUserEmail}
+      )
+    </foreach>
+  </insert>
+</mapper>

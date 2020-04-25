@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>911反恐</title>
+    <style>
+        form {
+            position: relative;
+            width: 305px;
+            margin: 15px auto 0 auto;
+            text-align: center;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+</head>
+<body style=" background:#fff url('/timg.jpg') no-repeat left top;
+  background-size:100%;">
+<h1 style="text-align: center;color:chartreuse" >欢迎你来到反恐组织总部,这里是911反恐总部</h1>
+
+<div style="margin: 120px auto 0 auto;;color:chartreuse">
+
+    <form action="/webUserController/queryUserList" method="post" style="border: #0E90D2">
+        <table  style="text-align: center;color:chartreuse">
+            <tr>
+                <td>
+        接收人邮箱账号:
+                </td>
+                <td>
+                <input type="text" name="recipient"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+             主题:
+                </td>
+                <td><input type="text" name="subject" /></td>
+            </tr>
+            <tr >
+                <td>
+        内容: </td>
+                <td><textarea name="content" style="width: 169px"></textarea></td>
+            </tr>
+            <tr>
+                <td> 提交:
+                </td>
+                <td>
+        <input type="submit" value="Submit"/>
+                </td>
+            </tr>
+    </table>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>中奖人名单</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+</head>
+<body><div class="panel panel-default">
+    <div class="panel-heading" style="text-align: center;background-color: #40a546;color: white;">
+        中华人民共和国欢迎你
+    </div>
+    <div style="margin-bottom:0px;display: flex; height: 150px;align-items: center;">
+        <label  style="margin-left: 100px;; margin-top:5px">姓名：</label>
+        <div >
+            <input type="text" name="Name" id="search_name"/>
+        </div>
+        <label style="    margin-left: 100px;; margin-top:5px">手机号：</label>
+        <div>
+            <input type="text" name="Name" id="search_tel"/>
+        </div>
+        <div  style=" margin-left: 100px;">
+            <button  id="search_btn">查询</button>
+        </div>
+        <button type="button"  style="float: right;margin-left: 100px;" id = "myWord">Word导出</button>
+        <button type="button" data-toggle="modal" data-target="#myModal" style="float: right;margin-left: 100px;">Excel导出</button>
+        <form class="form-horizontal" id="form_table" action="/webUserController/import" enctype="multipart/form-data" method="post">
+            <br/>
+            <br/>
+            <button type="submit" class="btn btn-primary" style="margin-left:100px; margin-top: -75px;">导入</button>
+            <input class="form-input" type="file" name="filename" style="margin-left: 250px;    margin-top: -60px;"></input>
+        </form>
+    </div>
+</div>
+<table id="mytab" class="table table-hover"></table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    当前数据EXCEL导出
+                </h4>
+            </div>
+            <div class="modal-body">
+                你确定导出当前数据吗?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button type="button" class="btn btn-primary" id="excelDatel">
+                    确定
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script>
+    $('#mytab').bootstrapTable({
+        method : 'get',
+        url : "/webUserController/getUserListPage",//请求路径
+        striped : true, //是否显示行间隔色
+        pageNumber : 1, //初始化加载第一页
+        pagination : true,//是否分页
+        sidePagination : 'server',//server:服务器端分页|client：前端分页
+        pageSize : 4,//单页记录数
+        pageList : [ 5, 10, 20, 30 ],//可选择单页记录数
+        showRefresh : true,//刷新按钮
+        queryParams : function(params) {//上传服务器的参数
+            var temp = {//如果是在服务器端实现分页，limit、offset这两个参数是必须的
+                pageSize : params.limit, // 每页显示数量
+                startPage : params.offset, // SQL语句起始索引*/
+                currentPage : (params.offset / params.limit) + 1, //当前页码
+
+                Name : $('#search_name').val(),
+                Tel : $('#search_tel').val()
+            };
+            return temp;
+        },
+        columns : [ {
+            title : '登录名',
+            field : 'fUserAccount',
+            sortable : true
+        }, {
+            title : '姓名',
+            field : 'fUserEmail',
+            sortable : true
+        }, {
+            title : '手机号',
+            field : 'fUserPhone',
+        }, {
+            title : '操作',
+            field : 'id',
+            formatter : operation,//对资源进行操作
+        } ]
+    })
+    //删除、编辑操作
+    function operation(value, row, index) {
+        var htm = "<button>删除</button><button>修改</button>"
+        return htm;
+    }
+
+    //查询按钮事件
+    $('#search_btn').click(function() {
+        $('#mytab').bootstrapTable('refresh', {
+            url : '/webUserController/getUserListPage'
+        });
+    })
+    $(function() {
+        $('#excelDatel').click(
+            function() {
+                var iframe = document.createElement("iframe");
+                iframe.id = "download";
+                document.body.appendChild(iframe);
+                // 创建form
+                var form = iframe.contentDocument.createElement("form");
+                form.action = "/webUserController/export_";
+                form.method = "GET";
+                form.id = "form";
+                form.name = "form";
+                iframe.contentDocument.body.appendChild(form);
+                iframe.contentDocument.getElementById("form").submit();
+            })
+
+        $('#myWord').click(
+            function() {
+                window.location.href = "/webUserController/createWord";
+            })
+    });
+</script>
+</html>
